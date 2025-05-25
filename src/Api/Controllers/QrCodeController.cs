@@ -1,38 +1,48 @@
 ﻿using Core.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
-  [Route("api/[controller]")]
+  [Route("api/")]
   [ApiController]
   public class QrCodeController : ControllerBase
   {
-    [HttpGet("getcodes")]
-    public IActionResult GetCodes()
+
+    private readonly IQrCodeService _qrCodeService;
+
+    public QrCodeController(IQrCodeService qrCodeService)
     {
-      // This is a placeholder for the actual implementation.
-      // You would typically retrieve the QR codes from a database or service.
-      var qrCodes = new List<string> { "QR1234567890", "QR0987654321" };
-      return Ok(qrCodes);
+      _qrCodeService = qrCodeService;
     }
 
-    [HttpGet("getcodeid")]
-    public IActionResult GetCodeId(int id)
+    [HttpGet("codes")]
+    public async Task<IActionResult> GetCodes()
     {
-      // This is a placeholder for the actual implementation.
-      // You would typically retrieve the QR code by ID from a database or service.
-      var qrCode = $"QRCode with ID: {id}";
-      return Ok(qrCode);
+      var codes = await _qrCodeService.GetAllQrCodesAsync();
+      if (codes == null)
+        return NotFound();
+      return Ok(codes);
     }
 
-    [HttpPost("createcode")]
-    public IActionResult CreateCode([FromServices] IGs1 gs1)
+    [HttpGet("codes/{id}")]
+    public async Task<IActionResult> GetCodeId(int id)
     {
-      var code=gs1.GenerateUniqueGs1Code();
-      // Simulate saving the QR code
-      var createdQrCode = $"Created QR Code: ";
-      return CreatedAtAction(nameof(GetCodeId),code);
+      var code = await _qrCodeService.GetQrCodeByIdAsync(id);
+      if (code == null)
+        return NotFound();
+      return Ok(code);
+    }
+
+    [HttpPost("codes")]
+    public async Task<IActionResult> CreateCode()
+    {
+      var code = await _qrCodeService.CreateAddQrCodeAsync();
+      if (code == null)
+      {
+        return NoContent();
+      }
+
+      return Ok(code);
     }
   }
 }

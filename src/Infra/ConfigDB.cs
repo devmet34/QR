@@ -14,8 +14,8 @@ namespace Infra
     {
       string QrDbConnStr = config["Sql:ConnectionString:QrDb"] ?? throw new InvalidOperationException("Connection string 'Identity' not found.");
 
-      services.AddDbContext<QrDbContext>(options =>
-        options.UseSqlServer(QrDbConnStr));
+      services.AddDbContext<QrDbContext>(options => 
+        options.UseSqlServer(QrDbConnStr, opt =>  opt.CommandTimeout(5)));
       return services;
 
     }

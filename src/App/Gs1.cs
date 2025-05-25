@@ -1,7 +1,7 @@
 ﻿using Core.Interfaces;
 using System.Security.Cryptography;
 
-namespace App.Services
+namespace App
 {
   public class Gs1 : IGs1
   {

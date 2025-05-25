@@ -1,10 +1,11 @@
+using App.Services;
+using Core.Interfaces;
 using Infra;
-using Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddLogging();
 builder.Services.AddDBContexts(builder.Configuration);
 
 builder.Services.AddControllers();
@@ -12,7 +13,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<Core.Interfaces.IGs1, App.Services.Gs1>();
+//builder.Services.AddScoped<Core.Interfaces.IGs1, Gs1>();
+builder.Services.AddScoped<IQrCodeService, QrCodeService>();
+builder.Services.AddScoped<IRepoQrCode, RepoQrCode>();
 
 var app = builder.Build();
 
