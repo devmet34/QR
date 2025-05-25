@@ -1,3 +1,4 @@
+using App;
 using App.Services;
 using Core.Interfaces;
 using Infra;
@@ -5,6 +6,7 @@ using Infra;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddSingleton<Gs1>();
 builder.Services.AddLogging();
 builder.Services.AddDBContexts(builder.Configuration);
 

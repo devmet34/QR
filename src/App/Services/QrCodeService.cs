@@ -6,13 +6,15 @@ namespace App.Services
 {
   public class QrCodeService : Core.Interfaces.IQrCodeService
   {
-    private readonly Gs1 _gs1 = new Gs1();
+    //private readonly Gs1 _gs1 = new Gs1();
+    private readonly Gs1 _gs1;
     private readonly IRepoQrCode _repoQrCode;
     private readonly ILogger<QrCodeService> _logger;
-    public QrCodeService(IRepoQrCode repoQrCode, ILogger<QrCodeService> logger)
+    public QrCodeService(IRepoQrCode repoQrCode, ILogger<QrCodeService> logger, Gs1 gs1)
     {
       _repoQrCode = repoQrCode ?? throw new ArgumentNullException(nameof(repoQrCode));
       _logger = logger;
+      _gs1 = gs1;
     }
 
     public async Task<QrCode?> CreateAddQrCodeAsync()
@@ -39,6 +41,15 @@ namespace App.Services
     public async Task<QrCode?> GetQrCodeByIdAsync(int id)
     {
       return await _repoQrCode.GetQrCodeByIdAsync(id);
+    }
+
+    public bool IsQrCodeValid(string code)
+    {
+      if (string.IsNullOrEmpty(code) || code.Length != 12)
+      {
+        return false;
+      }
+      return _gs1.IsValidGs1Code(code);
     }
   }
 }

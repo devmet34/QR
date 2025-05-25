@@ -33,6 +33,27 @@ namespace Api.Controllers
       return Ok(code);
     }
 
+    [HttpPost("validate/{code}")]
+    public  IActionResult ValidateCode(string code)
+    {
+      if (string.IsNullOrEmpty(code))
+      {
+        return BadRequest("Code cannot be null or empty.");
+      }
+      if (code.Length != 12)
+      {
+        return BadRequest("Code must be exactly 12 characters long.");
+      }
+      if (!long.TryParse(code,out long n) )
+        return BadRequest("Code must be numeric.");
+
+      var isValid = _qrCodeService.IsQrCodeValid(code);
+      if (!isValid)      
+        return NotFound("Invalid QR code.");
+      
+      return Ok("QR code is valid.");
+    }
+
     [HttpPost("codes")]
     public async Task<IActionResult> CreateCode()
     {

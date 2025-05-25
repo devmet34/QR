@@ -8,5 +8,6 @@ namespace Core.Interfaces
     public Task<IEnumerable<QrCode>?> GetAllQrCodesAsync();
     public Task<QrCode?> GetQrCodeByIdAsync(int id);
     public Task<QrCode?> CreateAddQrCodeAsync();
+    public bool IsQrCodeValid(string code);
   }
 }
