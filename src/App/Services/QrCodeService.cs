@@ -19,7 +19,7 @@ namespace App.Services
     {
       try
       {
-        var gs1Code = _gs1.GenerateUniqueGs1Code();
+        var gs1Code = _gs1.GenerateGs1Code();
         var qrCode = new QrCode(gs1Code);
         await _repoQrCode.AddQrCodeAsync(qrCode);
         return qrCode;
