@@ -1,9 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infra
 {
@@ -13,16 +8,22 @@ namespace Infra
     {
     }
     public DbSet<Core.Entities.QrCode> QrCodes { get; set; }
+    public DbSet<Core.Entities.ExtProduct> ExtProducts { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
       modelBuilder.Entity<Core.Entities.QrCode>()
         .Property(q => q.Code)
-        .IsRequired()        
+        .IsRequired()
         .HasMaxLength(12);
 
       modelBuilder.Entity<Core.Entities.QrCode>()
         .HasIndex(q => q.Code)
         .IsUnique();
+
+      modelBuilder.Entity<Core.Entities.ExtProduct>()
+        .HasIndex(e => e.ExtProductId)
+        .IsUnique();
+
     }
 
 
