@@ -13,7 +13,7 @@
     }
 
     public int Id { get; private set; }
-    public int ExtProductId { get; private set; }
+    //public int ExtProductId { get; private set; }
     public string Title { get; private set; }
     public string Description { get; private set; }
 
@@ -21,8 +21,7 @@
 
     public float Rating { get; private set; }
     public int Stock { get; private set; }
-
-
+  
 
   }
 }

@@ -21,8 +21,8 @@ namespace Infra
         .IsUnique();
 
       modelBuilder.Entity<Core.Entities.ExtProduct>()
-        .HasIndex(e => e.ExtProductId)
-        .IsUnique();
+        .Property(p => p.Id)
+        .ValueGeneratedNever();
 
     }
 

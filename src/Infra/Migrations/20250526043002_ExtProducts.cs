@@ -14,9 +14,7 @@ namespace Infra.Migrations
                 name: "ExtProducts",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ExtProductId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -27,12 +25,6 @@ namespace Infra.Migrations
                 {
                     table.PrimaryKey("PK_ExtProducts", x => x.Id);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ExtProducts_ExtProductId",
-                table: "ExtProducts",
-                column: "ExtProductId",
-                unique: true);
         }
 
         /// <inheritdoc />
