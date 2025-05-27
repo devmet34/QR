@@ -5,8 +5,7 @@ using Microsoft.Extensions.Logging;
 namespace App.Services
 {
   public class QrCodeService : Core.Interfaces.IQrCodeService
-  {
-    //private readonly Gs1 _gs1 = new Gs1();
+  {    
     private readonly Gs1 _gs1;
     private readonly IRepoQrCode _repoQrCode;
     private readonly ILogger<QrCodeService> _logger;
