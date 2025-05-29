@@ -34,7 +34,7 @@ namespace Api.Controllers
     }
 
     [HttpPost("validate/{code}")]
-    public  IActionResult ValidateCode(string code)
+    public IActionResult ValidateCode(string code)
     {
       if (string.IsNullOrEmpty(code))
       {
@@ -44,26 +44,28 @@ namespace Api.Controllers
       {
         return BadRequest("Code must be exactly 12 characters long.");
       }
-      if (!long.TryParse(code,out long n) )
+      if (!long.TryParse(code, out long n))
         return BadRequest("Code must be numeric.");
 
       var isValid = _qrCodeService.IsQrCodeValid(code);
-      if (!isValid)      
+      if (!isValid)
         return NotFound("Invalid QR code.");
-      
+
       return Ok("QR code is valid.");
     }
 
     [HttpPost("codes")]
     public async Task<IActionResult> CreateCode()
     {
-      var code = await _qrCodeService.CreateAddQrCodeAsync();
-      if (code == null)
+      try
       {
-        return NoContent();
+        var code = await _qrCodeService.CreateAddQrCodeAsync();
+        return Ok(code);
       }
-
-      return Ok(code);
+      catch (Exception)
+      {
+        return StatusCode(500, $"Internal server error while creating/adding qr code:");
+      }
     }
   }
 }
