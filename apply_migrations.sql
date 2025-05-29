@@ -1,4 +1,9 @@
-﻿IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+﻿Create Database QrDb
+go
+use QrDb
+go
+
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
 BEGIN
     CREATE TABLE [__EFMigrationsHistory] (
         [MigrationId] nvarchar(150) NOT NULL,
@@ -38,4 +43,5 @@ VALUES (N'20250526043002_ExtProducts', N'9.0.5');
 
 COMMIT;
 GO
+
 
