@@ -1,3 +1,4 @@
+# QR Web Api Task
 Web api ozellikler:
 * Algoritma ile Gs1 uyumlu 12 haneli random benzersiz numerik kod uretiyor ve kodu db ye kaydediyor.
 * Kaydedilen tum gs1 kodlari getiriyor, id ile tek kod getiriyor.
@@ -14,13 +15,12 @@ Tum api uclari swagger ui de mevcut, test edildi.
 
 
 
-Eng
+# EN
 Web API Features:
 * Generates a 12-digit random unique numeric code compatible with GS1 using an algorithm and saves it to the database.
 * Retrieves all saved GS1 codes, and allows fetching a single code by its ID.
 * Validates any given 12-digit numeric code for GS1 compliance using the algorithm.
 * Fetches product data from a dummy API using an ID, saves it to the database, and displays the fetched data. The ID must be between 1 and 150.
-Note: Bonus task has been completed.
 
 Used technologies and design:
 Asp.net core api, mssql, ef core, algoritma, swagger, xunit, httpclient.
