@@ -3,7 +3,8 @@ Web api ozellikler:
 * Algoritma ile Gs1 uyumlu 12 haneli random benzersiz numerik kod uretiyor ve kodu db ye kaydediyor.
 * Kaydedilen tum gs1 kodlari getiriyor, id ile tek kod getiriyor.
 * Girilen herhangi 12 haneli numerik kodu algoritma ile gs1 uyumlulugunu dogruluyor.
-* Dummy api den id ile product verisi cekiyor, db ye kaydediyor ve cekilen veriyi gosteriyor. Id 1-150 arasi girilmesi gerekiyor. 
+* Dummy api den id ile product verisi cekiyor, db ye kaydediyor ve cekilen veriyi gosteriyor. Id 1-150 arasi girilmesi gerekiyor.
+* 2 unit testi.
 
 Teknolojiler ve tasarim:
 Asp.net core api, mssql, ef core, algoritma, swagger, xunit, httpclient.
@@ -21,9 +22,10 @@ Web API Features:
 * Retrieves all saved GS1 codes, and allows fetching a single code by its ID.
 * Validates any given 12-digit numeric code for GS1 compliance using the algorithm.
 * Fetches product data from a dummy API using an ID, saves it to the database, and displays the fetched data. The ID must be between 1 and 150.
-
+* 2 unit test.
+  
 Used technologies and design:
-Asp.net core api, mssql, ef core, algoritma, swagger, xunit, httpclient.
+Asp.net core api, mssql, ef core, algorithm, swagger, xunit, httpclient.
 Clean architecture, mvc, swagger ui, async, di, solid.
 
 Usage:
